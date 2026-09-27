@@ -21,6 +21,7 @@ import { useApp } from '@/lib/store';
 import { MilestoneItem } from '@/lib/database.types';
 import { EmptyState } from '@/components/EmptyState';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
+import { BreakTimeBanner } from '@/components/BreakTimeBanner';
 
 export default function ProgressPage() {
   const { progressOverview, tasks, milestones, updateTaskStatus, isLoaded } = useApp();
@@ -113,6 +114,9 @@ export default function ProgressPage() {
           </div>
         </div>
       </header>
+
+      {/* Gentle Break-Time Banner */}
+      <BreakTimeBanner contextText="You have made solid progress across your deliverables. Take a short 2-minute reset whenever you need to recharge." />
 
       {/* Main Progress Visualization Hero */}
       <div 

@@ -516,6 +516,15 @@ export default function ProfilePage() {
                     />
                     <span>Notify me when new shared resources are uploaded in my teams</span>
                   </label>
+
+                  <label style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer', fontSize: '14px' }}>
+                    <input 
+                      type="checkbox" 
+                      defaultChecked={true} 
+                      style={{ width: '18px', height: '18px', accentColor: 'var(--primary)' }}
+                    />
+                    <span>Suggest a gentle 2-minute break after 50 minutes of continuous study</span>
+                  </label>
                 </div>
               </div>
             </div>

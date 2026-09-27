@@ -12,6 +12,11 @@ import {
   TeamActivityItem,
   ResourceItem,
   NotificationItem,
+  WellbeingMood,
+  BreakActivity,
+  SupportResource,
+  TeamCheckinItem,
+  TeamCheckinStatus,
 } from './database.types';
 import {
   INITIAL_USER,
@@ -24,6 +29,9 @@ import {
   INITIAL_ACTIVITIES,
   INITIAL_RESOURCES,
   INITIAL_NOTIFICATIONS,
+  INITIAL_BREAK_ACTIVITIES,
+  INITIAL_SUPPORT_RESOURCES,
+  INITIAL_TEAM_CHECKINS,
 } from './mockData';
 import {
   CreateTeamPayload,
@@ -62,6 +70,12 @@ interface AppContextType {
   markNotificationAsRead: (id: string) => void;
   markAllNotificationsAsRead: () => void;
   progressOverview: ProgressOverviewData;
+  wellbeingMood: WellbeingMood | null;
+  setWellbeingMood: (mood: WellbeingMood) => void;
+  teamCheckins: TeamCheckinItem[];
+  setTeamCheckin: (teamId: string, status: TeamCheckinStatus, note?: string) => void;
+  breakActivities: BreakActivity[];
+  supportResources: SupportResource[];
   isLoaded: boolean;
 }
 
@@ -103,6 +117,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [activities, setActivities] = useState<TeamActivityItem[]>(INITIAL_ACTIVITIES);
   const [resources, setResources] = useState<ResourceItem[]>(INITIAL_RESOURCES);
   const [notifications, setNotifications] = useState<NotificationItem[]>(INITIAL_NOTIFICATIONS);
+  const [wellbeingMood, setWellbeingMoodState] = useState<WellbeingMood | null>(null);
+  const [teamCheckins, setTeamCheckins] = useState<TeamCheckinItem[]>(INITIAL_TEAM_CHECKINS);
+  const [breakActivities] = useState<BreakActivity[]>(INITIAL_BREAK_ACTIVITIES);
+  const [supportResources] = useState<SupportResource[]>(INITIAL_SUPPORT_RESOURCES);
 
   // Initialize from LocalStorage on mount
   useEffect(() => {
@@ -117,6 +135,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setActivities(getStoredItem('activities', INITIAL_ACTIVITIES));
     setResources(getStoredItem('resources', INITIAL_RESOURCES));
     setNotifications(getStoredItem('notifications', INITIAL_NOTIFICATIONS));
+    setWellbeingMoodState(getStoredItem('wellbeing_mood', null));
+    setTeamCheckins(getStoredItem('team_checkins', INITIAL_TEAM_CHECKINS));
     setIsLoaded(true);
   }, []);
 
@@ -606,6 +626,46 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     };
   }, [tasks, subjects, milestones, user.streak_days]);
 
+  const setWellbeingMood = (mood: WellbeingMood) => {
+    setWellbeingMoodState(mood);
+    setStoredItem('wellbeing_mood', mood);
+  };
+
+  const setTeamCheckin = (teamId: string, status: TeamCheckinStatus, note?: string) => {
+    const newCheckin: TeamCheckinItem = {
+      id: `tc_${Date.now()}`,
+      team_id: teamId,
+      user_id: user.id,
+      user_name: user.name,
+      status,
+      note,
+      created_at: new Date().toISOString(),
+    };
+
+    setTeamCheckins((prev) => [newCheckin, ...prev.filter(c => !(c.team_id === teamId && c.user_id === user.id))]);
+
+    // Also log to team activities so teammates see the status
+    const statusLabels: Record<TeamCheckinStatus, string> = {
+      making_progress: 'is making steady progress on assigned tasks',
+      need_help: 'requested peer support / guidance on an assignment',
+      taking_break: 'stepped away for a short study break',
+      almost_finished: 'is wrapping up final deliverable checks',
+    };
+
+    const newActivity: TeamActivityItem = {
+      id: `act_${Date.now()}`,
+      team_id: teamId,
+      user_name: user.name,
+      user_avatar: user.avatar_url,
+      action_type: 'discussion_posted',
+      description: 'updated status',
+      target_title: statusLabels[status],
+      created_at: new Date().toISOString(),
+    };
+
+    setActivities((prev) => [newActivity, ...prev]);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -636,6 +696,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         markNotificationAsRead,
         markAllNotificationsAsRead,
         progressOverview,
+        wellbeingMood,
+        setWellbeingMood,
+        teamCheckins,
+        setTeamCheckin,
+        breakActivities,
+        supportResources,
         isLoaded,
       }}
     >

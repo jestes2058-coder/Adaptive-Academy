@@ -634,3 +634,126 @@ export const INITIAL_NOTIFICATIONS: NotificationItem[] = [
     created_at: '2026-09-12T16:20:00Z',
   },
 ];
+
+export const INITIAL_BREAK_ACTIVITIES = [
+  {
+    id: 'act_breath_box',
+    title: '2-Minute Box Breathing Reset',
+    duration_minutes: 2,
+    category: 'breathing' as const,
+    description: 'A rhythmic 4-second breathing pattern used to settle focus, slow heart rate, and clear mental tension.',
+    steps: [
+      'Inhale slowly through your nose for 4 seconds',
+      'Gently hold your breath for 4 seconds',
+      'Exhale smoothly through your mouth for 4 seconds',
+      'Hold empty for 4 seconds, then repeat for 4 cycles'
+    ],
+  },
+  {
+    id: 'act_screen_20',
+    title: '20-20-20 Eye & Screen Relief',
+    duration_minutes: 2,
+    category: 'screen_reset' as const,
+    description: 'Relieve digital eye strain and optic fatigue by redirecting focal distance.',
+    steps: [
+      'Shift your gaze away from all monitors and phone screens',
+      'Focus on an object at least 20 feet (6 meters) away',
+      'Blink slowly and relax your eyebrow muscles for 20 seconds',
+      'Gently roll your shoulders backward 5 times'
+    ],
+  },
+  {
+    id: 'act_desk_stretch',
+    title: '5-Minute Posture & Spine Stretch',
+    duration_minutes: 5,
+    category: 'movement' as const,
+    description: 'Release tension in neck, shoulders, and lower back caused by prolonged study desk posture.',
+    steps: [
+      'Slow neck tilts from ear to shoulder (30 seconds each side)',
+      'Interlace fingers behind back and gently open your chest',
+      'Seated spinal twist looking over your right, then left shoulder',
+      'Wrist and forearm extension flexes'
+    ],
+  },
+  {
+    id: 'act_hydration',
+    title: 'Hydration & Mindful Pause',
+    duration_minutes: 3,
+    category: 'hydration' as const,
+    description: 'Proper hydration sustains cognitive stamina and prevents mid-study fatigue.',
+    steps: [
+      'Stand up and step away from your study workspace',
+      'Drink a full glass of cool or room-temperature water',
+      'Take 3 deep breaths while standing tall'
+    ],
+  },
+  {
+    id: 'act_reflection',
+    title: '3-Minute Micro-Win Reflection',
+    duration_minutes: 3,
+    category: 'reflection' as const,
+    description: 'Acknowledge one concept or problem you progressed on today to maintain constructive momentum.',
+    steps: [
+      'Jot down or mentally note 1 task or concept you moved forward',
+      'Remind yourself that understanding complex topics is an iterative process',
+      'Identify the single next small step when you return'
+    ],
+  },
+];
+
+export const INITIAL_SUPPORT_RESOURCES = [
+  {
+    id: 'sup_math_lab',
+    title: 'Peer Tutoring & Mathematics Learning Lab',
+    category: 'Academic Support' as const,
+    description: 'Free peer-led walk-in tutoring and collaborative problem-solving for calculus, algebra, and physics.',
+    url: '/subjects',
+    availability: 'Mon - Fri, 2:00 PM – 6:00 PM',
+  },
+  {
+    id: 'sup_study_skills',
+    title: 'Study Methods & Spaced Repetition Reference',
+    category: 'Study & Learning Support' as const,
+    description: 'Guides on active recall, Pomodoro cycles, and structured brain dump planning.',
+    url: '/resources',
+    availability: 'Digital Guide • Always Available',
+  },
+  {
+    id: 'sup_peer_network',
+    title: 'Student Peer Study Cohorts',
+    category: 'Peer Mentoring' as const,
+    description: 'Connect with classmates for shared exam preparation and project accountability.',
+    url: '/teams',
+    availability: 'Available via Team Directory',
+  },
+  {
+    id: 'sup_library_pods',
+    title: 'Quiet Study Pods & Collaborative Spaces',
+    category: 'Campus Advising' as const,
+    description: 'Library group rooms equipped with digital whiteboards and charging hubs.',
+    url: '/resources',
+    availability: 'Campus Library • 8:00 AM – 10:00 PM',
+  },
+];
+
+export const INITIAL_TEAM_CHECKINS = [
+  {
+    id: 'tc_1',
+    team_id: 'team_maths_survivors',
+    user_id: 'user_arun_02',
+    user_name: 'Arun Kumar',
+    status: 'making_progress' as const,
+    note: 'Working on Fourier Transform step 3',
+    created_at: '2026-09-27T10:15:00Z',
+  },
+  {
+    id: 'tc_2',
+    team_id: 'team_maths_survivors',
+    user_id: 'user_neha_03',
+    user_name: 'Neha Roy',
+    status: 'taking_break' as const,
+    note: 'Stepping away for a 10m tea break',
+    created_at: '2026-09-27T10:20:00Z',
+  },
+];
+

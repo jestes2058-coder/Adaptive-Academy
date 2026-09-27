@@ -466,3 +466,43 @@ export type DiscussionMessage = Database['public']['Tables']['discussions']['Row
 export type TeamActivityItem = Database['public']['Tables']['team_activities']['Row'];
 export type ResourceItem = Database['public']['Tables']['resources']['Row'];
 export type NotificationItem = Database['public']['Tables']['notifications']['Row'];
+
+export type WellbeingMood = 'calm' | 'okay' | 'tired' | 'overwhelmed' | 'stressed' | 'need_break';
+
+export type WellbeingCheckin = {
+  id: string;
+  user_id: string;
+  mood: WellbeingMood;
+  created_at: string;
+};
+
+export type BreakActivity = {
+  id: string;
+  title: string;
+  duration_minutes: number;
+  category: 'breathing' | 'movement' | 'reflection' | 'screen_reset' | 'hydration';
+  description: string;
+  steps: string[];
+};
+
+export type SupportResource = {
+  id: string;
+  title: string;
+  category: 'Academic Support' | 'Study & Learning Support' | 'Peer Mentoring' | 'Campus Advising' | 'Career & Skills';
+  description: string;
+  url: string;
+  availability: string;
+};
+
+export type TeamCheckinStatus = 'making_progress' | 'need_help' | 'taking_break' | 'almost_finished';
+
+export type TeamCheckinItem = {
+  id: string;
+  team_id: string;
+  user_id: string;
+  user_name: string;
+  status: TeamCheckinStatus;
+  note?: string;
+  created_at: string;
+};
+

@@ -13,7 +13,8 @@ import {
   LogOut,
   Bell,
   X,
-  Menu
+  Menu,
+  Coffee
 } from "lucide-react";
 import { useState } from "react";
 import { useApp } from "@/lib/store";
@@ -38,6 +39,7 @@ export function Sidebar() {
     { href: "/teams", label: "Teams & Collaboration", icon: Users2 },
     { href: "/team-workspace", label: "Team Workspace", icon: Users2, indent: true },
     { href: "/resources", label: "Resources", icon: FolderGit2 },
+    { href: "/wellbeing", label: "Break & Well-being", icon: Coffee },
     { href: "/profile", label: "Profile", icon: UserCircle2, badge: unreadCount > 0 ? unreadCount : undefined },
   ];
 

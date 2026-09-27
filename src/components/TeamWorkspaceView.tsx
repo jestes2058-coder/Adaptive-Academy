@@ -31,6 +31,8 @@ import { useApp } from '@/lib/store';
 import { TaskItem, TeamMemberItem } from '@/lib/database.types';
 import { EmptyState } from '@/components/EmptyState';
 import { LoadingSkeleton } from '@/components/LoadingSkeleton';
+import { TeamCheckinCard } from '@/components/TeamCheckinCard';
+import { Coffee } from 'lucide-react';
 
 interface TeamWorkspaceViewProps {
   initialTeamId?: string;
@@ -215,6 +217,14 @@ export function TeamWorkspaceView({ initialTeamId }: TeamWorkspaceViewProps) {
           </div>
 
           <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+            <Link
+              href="/wellbeing"
+              className="btn-secondary"
+              style={{ padding: '9px 14px', fontSize: '13px', textDecoration: 'none', color: 'var(--accent-success)', borderColor: 'rgba(82, 121, 111, 0.3)' }}
+              title="Take a quick 2-minute break"
+            >
+              <Coffee size={15} /> Break Time
+            </Link>
             <button 
               onClick={() => setShowInviteModal(true)}
               className="btn-secondary"
@@ -476,6 +486,9 @@ export function TeamWorkspaceView({ initialTeamId }: TeamWorkspaceViewProps) {
                 </div>
               )}
             </div>
+
+            {/* Squad Check-in Widget */}
+            <TeamCheckinCard teamId={currentTeam.id} />
 
           </div>
 
