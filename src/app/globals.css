@@ -1,0 +1,191 @@
+:root {
+  /* Modern Scholar Palette */
+  --bg-main: #F7F7F5; /* Alabaster */
+  --bg-surface: #FFFFFF; /* Pure White */
+  --bg-elevated: #EBEBE6; /* Muted Stone */
+  
+  --text-primary: #1A1C1E; /* Deep Charcoal */
+  --text-secondary: #64666B; /* Slate Gray */
+  --text-muted: #A1A3A8; /* Ash */
+  
+  --primary: #2B3A4A; /* Oxford Blue */
+  --primary-hover: #1E293B;
+  
+  --accent-success: #52796F; /* Muted Sage */
+  --accent-warning: #C06C5B; /* Soft Terracotta */
+  
+  --border-light: #E2E2DF;
+  
+  --shadow-subtle: 0 4px 12px rgba(26, 28, 30, 0.04);
+  --shadow-hover: 0 8px 24px rgba(26, 28, 30, 0.08);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-source-sans), sans-serif;
+  min-height: 100vh;
+}
+
+/* Typography Classes */
+.font-brand {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-heading {
+  font-family: var(--font-playfair), serif;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.font-body {
+  font-family: var(--font-source-sans), sans-serif;
+  color: var(--text-primary);
+}
+
+/* Utility Classes */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  box-shadow: var(--shadow-subtle);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-sm);
+  padding: 12px 24px;
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-elevated);
+}
+
+.tag-success {
+  background-color: rgba(82, 121, 111, 0.1);
+  color: var(--accent-success);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.tag-warning {
+  background-color: rgba(192, 108, 91, 0.1);
+  color: var(--accent-warning);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Layout Utilities */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background-color: var(--bg-main);
+  border-right: 1px solid var(--border-light);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-source-sans), sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover, .nav-item.active {
+  background-color: var(--bg-elevated);
+  color: var(--primary);
+}
+
+/* Form Styles */
+.input-field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 16px;
+  color: var(--text-primary);
+  background: var(--bg-surface);
+  transition: border-color 0.2s ease;
+}
+.input-field:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.form-label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
